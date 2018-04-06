@@ -32,9 +32,8 @@ app.use(express.urlencoded({ extended: false }));
 //set public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-	res.send('hello world!!!');
-});
+//route for homepage
+app.get('/', require('./routes/index'));
 
 app.listen(port, host, (err, result) => {
 		if(err){
