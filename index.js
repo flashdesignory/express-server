@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const open = require('open');
 const chalk = require('chalk');
 
 const app = express();
@@ -44,5 +45,7 @@ app.listen(port, host, (err, result) => {
 		console.log();
 		console.log(chalk.green("*******************************************"));
 		console.log();
+
+		open(url);
 	}
 )
