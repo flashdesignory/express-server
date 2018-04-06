@@ -25,7 +25,12 @@ const port = 8080;
 //local vars
 app.locals.title = 'express server';
 
-app.use(express.static('public'));
+//parse json payloads
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//set public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
 	res.send('hello world!!!');
@@ -49,3 +54,5 @@ app.listen(port, host, (err, result) => {
 		open(url);
 	}
 )
+
+module.exports = app;
