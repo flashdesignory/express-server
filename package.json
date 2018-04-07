@@ -4,11 +4,12 @@
   "description": "starter project",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/flashdesignory/express-server.git"
   },
   "main": "index.js",
   "scripts": {
-    "dev": "webpack"
+    "dev": "webpack",
+    "build": "webpack --p"
   },
   "keywords": [],
   "author": "",
