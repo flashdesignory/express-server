@@ -1,6 +1,6 @@
-const express = require('express');
-const path = require('path');
-const indexRoute = require('./routes/index');
+import express from 'express';
+import path from 'path';
+import indexRoute from './routes';
 
 const app = express();
 
@@ -17,4 +17,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 //route for homepage
 app.get('/', indexRoute);
 
-module.exports = app;
+export default app;

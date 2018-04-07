@@ -1,12 +1,17 @@
-const path = require('path');
-const open = require('open');
-const chalk = require('chalk');
+import open from 'open';
+import os from 'os';
+import chalk from 'chalk';
+import http from 'http';
+import { createServer } from 'http';
 
-const app = require('./server');
+import app from './server';
+
+const server = http.createServer(app);
+let currentApp = app;
 
 function getExternalIp(){
 	let address;
-	let ifaces = require('os').networkInterfaces();
+	let ifaces = os.networkInterfaces();
 	let addresses = [];
 	for (let dev in ifaces) {
 		ifaces[dev].filter(function(details){
@@ -21,21 +26,25 @@ function getExternalIp(){
 const host = getExternalIp();
 const port = 8080;
 
-app.listen(port, host, (err, result) => {
-		if(err){
-			return console.log(err);
-		}
+server.listen(port, host,  () => {
 
-		var url = 'http://' + host + ':' + port;
+	var url = 'http://' + host + ':' + port;
 
-		console.log();
-		console.log(chalk.green("*******************************************"));
-		console.log();
-		console.log(chalk.cyan("listening at: " + url));
-		console.log();
-		console.log(chalk.green("*******************************************"));
-		console.log();
+	console.log();
+	console.log(chalk.green("*******************************************"));
+	console.log();
+	console.log(chalk.cyan("listening at: " + url));
+	console.log();
+	console.log(chalk.green("*******************************************"));
+	console.log();
 
-		open(url);
-	}
-)
+	open(url);
+})
+
+if (module.hot) {
+	module.hot.accept(['./server'], () => {
+		server.removeListener('request', currentApp)
+		server.on('request', app)
+		currentApp = app
+	})
+}
