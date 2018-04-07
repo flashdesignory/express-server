@@ -1,9 +1,8 @@
-const express = require('express');
 const path = require('path');
 const open = require('open');
 const chalk = require('chalk');
 
-const app = express();
+const app = require('./server');
 
 function getExternalIp(){
 	let address;
@@ -21,19 +20,6 @@ function getExternalIp(){
 
 const host = getExternalIp();
 const port = 8080;
-
-//local vars
-app.locals.title = 'express server';
-
-//parse json payloads
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-//set public folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-//route for homepage
-app.get('/', require('./routes/index'));
 
 app.listen(port, host, (err, result) => {
 		if(err){
@@ -53,5 +39,3 @@ app.listen(port, host, (err, result) => {
 		open(url);
 	}
 )
-
-module.exports = app;
