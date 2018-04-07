@@ -1,2 +1,2 @@
 # express-boilerplate
-Starter Project - don't look at me yet..work in progress
+Starter Project - with webpack and HMR
