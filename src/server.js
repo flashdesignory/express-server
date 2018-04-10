@@ -15,6 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //route for homepage
-app.get('/', indexRoute);
+app.use('/', indexRoute);
 
 export default app;
