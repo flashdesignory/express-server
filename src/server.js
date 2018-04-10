@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import indexRoute from './routes';
+import indexRoute from './api';
 
 const app = express();
 
@@ -14,7 +14,13 @@ app.use(express.urlencoded({ extended: false }));
 //set public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-//route for homepage
+//routes
 app.use('/', indexRoute);
+
+//global error handler
+app.use((err, req, res, next) => {
+	console.log(err.stack);
+	res.status(500).send('Error has occured');
+});
 
 export default app;
