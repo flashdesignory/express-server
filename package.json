@@ -11,7 +11,7 @@
     "dev": "webpack",
     "build": "webpack --p",
     "lint": "./node_modules/.bin/eslint **/*.{js,jsx} --quiet",
-    "win-lint": "eslint **/*.{js,jsx} --quiet"
+    "lint-win": "node node_modules\\eslint\\bin\\eslint **/*.{js,jsx} --quiet"
   },
   "keywords": [],
   "author": "",
