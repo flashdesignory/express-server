@@ -17,10 +17,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', indexRoute);
 
-// global error handler
-app.use((err, req, res /* , next */) => {
-  console.log(err.stack);
-  res.status(500).send('Error has occured');
-});
-
 export default app;
