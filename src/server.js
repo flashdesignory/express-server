@@ -1,8 +1,11 @@
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import indexRoute from './api';
 
 const app = express();
+
+app.use(cors());
 
 // local vars
 app.locals.title = 'express server';
