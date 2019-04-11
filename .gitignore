@@ -4,5 +4,6 @@ node_modules/
 public/*hot-update.json
 public/*hot-update.js
 public/server.js
+logs/
 *.map
 .env
